@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-04-14T13:15:59 IST" name="Suite" finished-at="2026-04-14T13:16:08 IST" duration-ms="8723">
+    <groups>
+    </groups>
+    <test started-at="2026-04-14T13:15:59 IST" name="Test" finished-at="2026-04-14T13:16:08 IST" duration-ms="8723">
+      <class name="Frameworks.TestNG_Frameworks.ErrorValidationsTest">
+        <test-method is-config="true" signature="driverInitialisation()[pri:0, instance:Frameworks.TestNG_Frameworks.ErrorValidationsTest@338fc1d8]" started-at="2026-04-14T13:15:59 IST" name="driverInitialisation" finished-at="2026-04-14T13:16:02 IST" duration-ms="3068" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- driverInitialisation -->
+        <test-method signature="ValidationOrderTest(java.lang.String)[pri:0, instance:Frameworks.TestNG_Frameworks.ErrorValidationsTest@338fc1d8]" started-at="2026-04-14T13:16:02 IST" name="ValidationOrderTest" finished-at="2026-04-14T13:16:08 IST" duration-ms="5592" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[https://rahulshettyacademy.com/client/]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ValidationOrderTest -->
+      </class> <!-- Frameworks.TestNG_Frameworks.ErrorValidationsTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

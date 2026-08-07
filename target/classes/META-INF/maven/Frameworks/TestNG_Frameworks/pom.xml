@@ -15,7 +15,7 @@
   </properties>
 
   <dependencies>
-
+  
 <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
@@ -24,10 +24,12 @@
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<!-- Source: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 <dependency>
     <groupId>io.github.bonigarcia</groupId>
     <artifactId>webdrivermanager</artifactId>
-    <version>6.3.2</version>
+    <version>6.3.4</version>
+    <scope>compile</scope>
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -70,4 +72,47 @@
 </dependency>
 
   </dependencies>
+  <profiles>
+  <profile>
+  <id>Regression</id>
+  <build>
+  <pluginManagement>
+   <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.5</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testSuites/testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+          </plugin>
+      </plugins>
+      </pluginManagement>
+      </build>
+      </profile>
+      
+      <profile>
+      <id>ErrorValidation</id>
+      <build>
+      <pluginManagement>
+    <plugins>
+       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.5</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testSuites/Error.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+</plugins>
+      </pluginManagement>
+      </build>
+      </profile>
+      
+    </profiles>
+    
 </project>

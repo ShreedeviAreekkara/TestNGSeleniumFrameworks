@@ -20,7 +20,8 @@ public class AbstractMethods {
 	@FindBy(xpath="//button [contains(@routerlink,'cart')]")
 	WebElement cartIcon;
 	
-	
+	@FindBy(css="[routerlink='/dashboard/myorders']")
+	WebElement orders;
 	
 	
 	
@@ -35,7 +36,7 @@ public class AbstractMethods {
 		}
 	
 	public void waitForElementToAppearByLocator(By findBy) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
 		}
 	
@@ -48,5 +49,8 @@ public class AbstractMethods {
 		cartIcon.click();
 	}
 	
+	public void gotoOrders() {
+		orders.click();
+	}
 
 }

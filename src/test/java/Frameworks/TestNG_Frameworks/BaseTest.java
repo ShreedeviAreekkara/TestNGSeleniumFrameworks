@@ -24,27 +24,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
-	public WebDriver driver;
+	public WebDriver webDriver;
 	
-	@BeforeMethod
+	@BeforeMethod(alwaysRun=true)
 	public WebDriver driverInitialisation() throws IOException {
+		ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//resources//globalData.properties");
 		prop.load(fis);
 		String browserName = prop.getProperty("browser");
 		if (browserName.contains("Edge")){
 		WebDriverManager.edgedriver().setup();
-		driver = new EdgeDriver();
+		webDriver = new EdgeDriver();
+		driver.set(webDriver);
 		}
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.manage().window().maximize();
-		return driver;
+		driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.get().manage().window().maximize();
+		return driver.get();
 		
 	}
 	
 	
 	
-	public List<HashMap<String,String>> jsonMapper(String jsonPath) throws IOException{
+	/*public List<HashMap<String,String>> jsonMapper(String jsonPath) throws IOException{
 		//Convert the jsonFile into String
 		String jsonToString = FileUtils.readFileToString(new File(jsonPath),StandardCharsets.UTF_8);
 		//Convert String into list of Hashmap
@@ -52,17 +54,17 @@ public class BaseTest {
 		List<HashMap<String,String>> data = mapper.readValue(jsonToString, new TypeReference<List<HashMap<String,String>>>(){});
 		return data;
 		
-	}
+	}*/
 	
 	
 	
 	public LandingPage browserInvocation(String url) throws IOException {
-		driver= driverInitialisation();
-		LandingPage lp= new LandingPage(driver);
+		webDriver= driverInitialisation();
+		LandingPage lp= new LandingPage(webDriver);
 		lp.goTo(url);
 		return lp;
 	}
-
+    
 	public String getScreenshot(String methodName, WebDriver driver) throws IOException {
 		// TODO Auto-generated method stub
 		TakesScreenshot ts = (TakesScreenshot) driver;

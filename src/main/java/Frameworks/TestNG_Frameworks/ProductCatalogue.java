@@ -16,6 +16,7 @@ public class ProductCatalogue extends AbstractMethods{
 		PageFactory.initElements(driver, this);
 	}
 	
+	WebElement prod ;
 	@FindBy (css="#toast-container")
 	   WebElement toast_message;
 	 
@@ -29,14 +30,14 @@ public class ProductCatalogue extends AbstractMethods{
 	By byToast = By.cssSelector("#toast-container");
 	
 	public WebElement getProduct(String productName) {
-	WebElement prod= products.stream().filter(product->product.findElement(By.cssSelector("b")).getText().equalsIgnoreCase(productName)).findFirst().orElse(null);
+	prod= products.stream().filter(product->product.findElement(By.cssSelector("b")).getText().equalsIgnoreCase(productName)).findFirst().orElse(null);
 	return prod;
 	}
 	
 	
 	public CartPage AddProductToCart(String productName) {
 	waitForElementToAppearByLocator(productsBy);
-	WebElement prod = getProduct(productName);
+	prod = getProduct(productName);
 	prod.findElement(By.cssSelector("button:last-of-type")).click();
 	waitForElementToAppearByLocator(byToast);
 	waitForElementToDisappearByElement(ele);

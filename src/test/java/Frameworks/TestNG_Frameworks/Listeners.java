@@ -15,11 +15,13 @@ import Utilities.ExtentReporterNG;
 public class Listeners extends BaseTest implements ITestListener{
 ExtentReports extent = ExtentReporterNG.getReportObject();
 ExtentTest test;
+ThreadLocal<ExtentTest> tl = new ThreadLocal<ExtentTest>();
 	@Override
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
 		ITestListener.super.onTestStart(result);
 		test = extent.createTest(result.getMethod().getMethodName());
+		tl.set(test);
 	}
 
 	@Override
@@ -33,9 +35,9 @@ ExtentTest test;
 		// TODO Auto-generated method stub
 		ITestListener.super.onTestFailure(result);
 		
-		test.fail(result.getThrowable());
+		tl.get().fail(result.getThrowable());
 		try {
-			driver=(WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
+			webDriver=(WebDriver) result.getTestClass().getRealClass().getField("webDriver").get(result.getInstance());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,7 +45,7 @@ ExtentTest test;
 		
 		String screenshotPath = null;
 		try {
-			screenshotPath = getScreenshot(result.getMethod().getMethodName(),driver);
+			screenshotPath = getScreenshot(result.getMethod().getMethodName(),webDriver);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

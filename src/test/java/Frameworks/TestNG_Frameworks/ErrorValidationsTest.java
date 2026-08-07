@@ -11,16 +11,17 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ErrorValidationsTest extends BaseTest{
-	
-	    @Test
-	    public void submitOrderTest() throws IOException {
+	    @Parameters ({"url"})
+	    @Test(retryAnalyzer=Retry.class)
+	    public void ValidationOrderTest(String url) throws IOException {
 		String productName = "ZARA COAT 3";
-		LandingPage lp =browserInvocation("https://rahulshettyacademy.com/client/");
+		LandingPage lp =browserInvocation(url);
 		
 		lp.loginToApplication("ichu@gmail.com", "Kichu123");
 		String actualMessage=lp.returnErrorMessage();
