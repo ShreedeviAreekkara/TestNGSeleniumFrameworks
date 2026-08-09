@@ -51,7 +51,7 @@ ThreadLocal<ExtentTest> tl = new ThreadLocal<ExtentTest>();
 			e.printStackTrace();
 		}
 		
-		test.addScreenCaptureFromBase64String(screenshotPath);
+		tl.get().addScreenCaptureFromBase64String(screenshotPath);
 
 	}
 

@@ -31,7 +31,7 @@ public class BaseTest {
 		ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//resources//globalData.properties");
-		prop.load(fis);
+		prop.load(fis);   
 		String browserName = prop.getProperty("browser");
 		if (browserName.contains("Edge")){
 		WebDriverManager.edgedriver().setup();
